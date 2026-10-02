@@ -19,3 +19,14 @@ module "vpc_module" {
   private_subnet_03_cidr = var.private_subnet_03_cidr
   private_subnet_03_availability_zone = var.private_subnet_03_availability_zone
 }
+
+module "ec2_module" {
+  source = "../../../../modules/compute/EC2"
+
+  instance_ami_id              = var.instance_ami_id
+  instance_type                = var.instance_type
+  subnet_id                    = module.vpc_module.public_subnet_01_id
+  associate_public_ip_address  = var.associate_public_ip_address
+  environment                  = var.environment
+  aws_region                   = var.aws_region
+}

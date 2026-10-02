@@ -68,3 +68,16 @@ variable "private_subnet_03_cidr" {
 variable "private_subnet_03_availability_zone" {
         type = string
 }
+
+variable "instance_ami_id" {
+  type = string
+}
+
+variable "instance_type" {
+  type = string
+}
+
+variable "associate_public_ip_address" {
+  type    = bool
+  default = true
+}
