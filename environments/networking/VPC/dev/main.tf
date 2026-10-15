@@ -1,32 +1,40 @@
 module "vpc_module" {
-  source = "../../../../modules/networking/VPC"
+  source = "../../../../modules/networking/vpc old"
+
   aws_vpc_cidr = var.aws_vpc_cidr
   aws_region = var.aws_region
   environment = var.environment
   enable_dns_hostnames = var.enable_dns_hostnames
   enable_dns_support = var.enable_dns_support
+
   public_subnet_01_availability_zone = var.public_subnet_01_availability_zone
   public_subnet_01_cidr = var.public_subnet_01_cidr
+
   private_subnet_01_cidr = var.private_subnet_01_cidr
   private_subnet_01_availability_zone = var.private_subnet_01_availability_zone
+
   eip_name = var.eip_name
+
   public_subnet_02_cidr = var.public_subnet_02_cidr
   public_subnet_02_availability_zone = var.public_subnet_02_availability_zone
+
   public_subnet_03_cidr = var.public_subnet_03_cidr
   public_subnet_03_availability_zone = var.public_subnet_03_availability_zone
+
   private_subnet_02_cidr = var.private_subnet_02_cidr
   private_subnet_02_availability_zone = var.private_subnet_02_availability_zone
+
   private_subnet_03_cidr = var.private_subnet_03_cidr
   private_subnet_03_availability_zone = var.private_subnet_03_availability_zone
 }
 
+
 module "ec2_module" {
   source = "../../../../modules/compute/EC2"
 
-  instance_ami_id              = var.instance_ami_id
-  instance_type                = var.instance_type
-  subnet_id                    = module.vpc_module.public_subnet_01_id
-  associate_public_ip_address  = var.associate_public_ip_address
-  environment                  = var.environment
-  aws_region                   = var.aws_region
+  instance_ami_id             = var.instance_ami_id
+  instance_type               = var.instance_type
+  subnet_id                   = module.vpc_module.public_subnet_01_id
+  associate_public_ip_address = var.associate_public_ip_address
+  aws_region                  = var.aws_region
 }

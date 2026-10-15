@@ -8,7 +8,6 @@ resource "aws_instance" "example" {
   tags = {
     Name = "${var.environment}-web-server"
     Environment = var.environment
-  }
+    }
 }
-
 

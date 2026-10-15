@@ -16,7 +16,7 @@ provider "aws" {
 resource "aws_instance" "example" {
   ami           = "ami-01a00762f46d584a1"
   instance_type = "t3.micro"
-  subnet_id = "subnet-08b75eb08aac8a861"
+  subnet_id = "subnet-0f09071261d475b64"
 
   tags = {
     Name = "tf_ec2_instance"
